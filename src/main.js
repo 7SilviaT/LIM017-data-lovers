@@ -7,6 +7,7 @@ console.log (computeStats);
 
 //console.log (sortMovies)
 
+//boton pagina 1,nos lleva a pagina 2
 let btnMoreInf = document.getElementById("btnMoreInf");
 btnMoreInf.addEventListener("click",()=>{
   const pageOne=document.getElementById("pageOne");
@@ -15,12 +16,12 @@ btnMoreInf.addEventListener("click",()=>{
 pageTwo.style.display="";
 })
 
+
 let btnMoreInf2 = document.getElementById("btnMoreInf2");
 btnMoreInf2.addEventListener("click",()=>{
-
-  const pageOne=document.getElementById("pageOne");
-  pageOne.style.display="none";
-  const pageTwo=document.getElementById("pageTwo");
+const pageOne=document.getElementById("pageOne");
+pageOne.style.display="none";
+const pageTwo=document.getElementById("pageTwo");
 pageTwo.style.display="";
 const pageThree=document.getElementById("pageThree");
 pageThree.style.display="none";
@@ -45,6 +46,7 @@ pageThree.style.display="";
 const pageFour=document.getElementById("pageFour");
 pageFour.style.display="none";
 })
+
 let btnPeople2 = document.getElementById("btnPeople2");
 btnPeople2.addEventListener("click",()=>{
 const pageOne=document.getElementById("pageOne");
@@ -120,7 +122,7 @@ let filmsData = data.films;
 const totalDataFilms = (listData) =>{
   let resultMovies = "";
 //recorriendo nuestro array e ingresando vista html en forma de tarjetas
-listData.forEach((filmsData) => {
+listData.forEach((filmsData) => {//=> sintaxis: parametro.forEach(parametro que es nuestra funcion) 
   const dataCard = `
   <div class="cardContainer">
   <div class="cardInner">
@@ -140,20 +142,22 @@ listData.forEach((filmsData) => {
   </div>
   </div>
   `;
+  //nuestra variable vacia la igualamos a la constante ==> += para que recorra cada films y nos aceda a todo los datos de los films
   resultMovies += dataCard ;
     });
+    //llamamos nuestra vista creada en html mediante  su id para agregar la informacion obtenida o recorrida
     document.getElementById("filmsInfo").innerHTML= resultMovies;
   }
+  //por sintaxis debe retornar la variable con su parametro?
   totalDataFilms(filmsData);
 
- /* console.log(sortMovies(myArray, "title", "A-Z"))
+/* console.log(sortMovies(myArray, "title", "A-Z"))
   console.log(sortMovies(myArray, "release_date" , "sortDateAsc"))*/
- 
- //reflejamos funcion sort 
+
+ //manipulamos funcion sort en DOM
   document.getElementById("selectSortAZ").addEventListener("change", (e) => {
   const selectedIndex = e.currentTarget.value;
   //debugger
-  // sortBy.options[sortBy.selectedIndex].value;
   if (selectedIndex == "A-Z") {
     totalDataFilms(sortMovies(filmsData, "title", "A-Z"));
   }if (selectedIndex === "Z-A") {
